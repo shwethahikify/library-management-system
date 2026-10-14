@@ -1,0 +1,61 @@
+books = []
+
+def add_book():
+book_id = input("Enter Book ID: ")
+title = input("Enter Book Name: ")
+author = input("Enter Author Name: ")
+
+books.append({
+    "id": book_id,
+    "title": title,
+    "author": author,
+    "issued": False
+})
+
+print("Book added successfully!")
+
+def view_books():
+if not books:
+print("No books available.")
+return
+
+for book in books:
+    status = "Issued" if book["issued"] else "Available"
+    print(
+        "ID:", book["id"],
+        "| Title:", book["title"],
+        "| Author:", book["author"],
+        "| Status:", status
+    )
+
+def search_book():
+title = input("Enter book name to search: ").lower()
+
+for book in books:
+    if title in book["title"].lower():
+        print("Book found:", book["title"])
+        print("Author:", book["author"])
+        return
+
+print("Book not found.")
+
+while True:
+print("\n--- Library Management System ---")
+print("1. Add Book")
+print("2. View Books")
+print("3. Search Book")
+print("4. Exit")
+
+choice = input("Enter your choice: ")
+
+if choice == "1":
+    add_book()
+elif choice == "2":
+    view_books()
+elif choice == "3":
+    search_book()
+elif choice == "4":
+    print("Thank you!")
+    break
+else:
+    print("Invalid choice. Try again.")
